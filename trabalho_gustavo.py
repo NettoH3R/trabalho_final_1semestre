@@ -103,7 +103,7 @@ def main():
     hora_mes = float(input("quantas hora trabalhadas no mes?:"))
     faltas = float(input("quantas faltas o funcionario teve ao longo do mês?:"))
 
-    total_mes = calc_salario(hora, hora_mes)
+    total_mes = calc_salario(hora, hora_mes,faltas)
 
     if total_mes < 1412:
         print(f"esse salario é inferior a um salario minimo")
