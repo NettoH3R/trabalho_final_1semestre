@@ -1,10 +1,10 @@
 #calcula o salario bruto
-def calc_salario(hora,t_trabalho, faltas = 0):
+def calc_salario(hora,t_trabalho, faltas):
 
     s_bruto = hora * t_trabalho
 
     v_dia = s_bruto/30
-    s_bruto = s_bruto - (v_dia * faltas)
+    s_bruto = (s_bruto - (v_dia * faltas))
 
     return s_bruto
 
@@ -105,78 +105,81 @@ def main():
 
     total_mes = calc_salario(hora, hora_mes)
 
-    while True:
+    if total_mes < 1412:
+        print(f"esse salario é inferior a um salario minimo")
+    else:        
+        while True:
 
-        print_menu()
+            print_menu()
 
-        digito = int(input("Digite um número:"))
+            digito = int(input("Digite um número:"))
 
 
 
-        if digito == 1:
-            print(f"\nseu salario mensal é de: {total_mes}")
-            valor = menu_segue_ou_para()
-            if valor == 0:
+            if digito == 1:
+                print(f"\nseu salario mensal é de: {total_mes}")
+                valor = menu_segue_ou_para()
+                if valor == 0:
+                    break
+
+
+
+            elif digito == 2:
+                des_imp = desc_impR(total_mes)
+                print(f"\nDesconto do Imposto de Renda: {des_imp}")
+                valor = menu_segue_ou_para()
+                if valor == 0:
+                    break
+
+
+
+            elif digito == 3:
+                sind = desc_sindical(total_mes, hora, hora_mes)
+                print(f"\ndesconto sindicato: {sind}")
+                valor = menu_segue_ou_para()
+                if valor == 0:
+                    break
+
+
+
+            elif digito == 4:
+                des_inss = desc_inss(total_mes)
+                print(f"\ndesconto INSS: {des_inss}")
+                valor = menu_segue_ou_para()
+                if valor == 0:
+                    break
+
+
+
+            elif digito == 5:
+                liq = sal_liquido(total_mes, hora, hora_mes)
+                print(f"\n Salario liquidor: {liq}")
+                valor = menu_segue_ou_para()
+                if valor == 0:
+                    break
+
+
+
+
+
+            elif digito == 6:
+                dec13 = dec_terceiro(total_mes, hora, hora_mes)
+                print(f"\n Décimo terceiro: {dec13}")
+                valor = menu_segue_ou_para()
+                if valor == 0:
+                    break
+
+
+
+            elif digito == 7 :
                 break
 
 
 
-        elif digito == 2:
-            des_imp = desc_impR(total_mes)
-            print(f"\nDesconto do Imposto de Renda: {des_imp}")
-            valor = menu_segue_ou_para()
-            if valor == 0:
+
+            else:
+                print("\nNúmero inválido Digitado \n\n")
                 break
-
-
-
-        elif digito == 3:
-            sind = desc_sindical(total_mes, hora, hora_mes)
-            print(f"\ndesconto sindicato: {sind}")
-            valor = menu_segue_ou_para()
-            if valor == 0:
-                break
-
-
-
-        elif digito == 4:
-            des_inss = desc_inss(total_mes)
-            print(f"\ndesconto INSS: {des_inss}")
-            valor = menu_segue_ou_para()
-            if valor == 0:
-                break
-
-
-
-        elif digito == 5:
-            liq = sal_liquido(total_mes, hora, hora_mes)
-            print(f"\n Salario liquidor: {liq}")
-            valor = menu_segue_ou_para()
-            if valor == 0:
-                break
-
-
-
-
-
-        elif digito == 6:
-            dec13 = dec_terceiro(total_mes, hora, hora_mes)
-            print(f"\n Décimo terceiro: {dec13}")
-            valor = menu_segue_ou_para()
-            if valor == 0:
-                break
-
-
-
-        elif digito == 7 :
-            break
-
-
-
-
-        else:
-            print("\nNúmero inválido Digitado \n\n")
-            break
 
 if __name__ == "__main__":
     main()
